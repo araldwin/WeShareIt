@@ -1,0 +1,85 @@
+.CustomModalContent {
+  border-radius: 20px;
+}
+
+.Input {
+  background: #ffffff;
+  border: 2px solid #b7b7bb;
+  box-sizing: border-box;
+  border-radius: 10px;
+  color: #7177a1;
+
+  padding: 10px;
+}
+
+.Header {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 19px;
+  text-align: center;
+  color: #3e3e3e;
+}
+
+.Container {
+  padding: 30px 10px;
+}
+
+.Label {
+  font-size: 14px;
+  font-weight: bold;
+}
+.Form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+}
+
+.SignInCol {
+  height: 320px;
+}
+
+.SignUpCol {
+  height: 375px;
+}
+
+.PasswordInputContainer {
+  position: relative;
+}
+
+.PasswordToggleIcon {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.Link {
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+.Link span {
+  color: #ff9254;
+}
+
+.customButton {
+  height: 45px;
+  padding: 2px;
+  color: #3e3e3e;
+  background-color: #d9d9de; /* Set the desired background color */
+  border-radius: 15px; /* Set the desired border radius */
+  border: none; /* Remove the border */
+}
