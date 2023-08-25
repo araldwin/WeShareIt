@@ -54,9 +54,9 @@ const SignUpForm = (props) => {
 
   return (
     <>
-      <Button onClick={handleShow} className={styles.customButton}>
+      <button onClick={handleShow} className={styles.signUpButton}>
         <div>Sign Up</div>
-      </Button>
+      </button>
 
       <Modal
         show={showModal}
@@ -159,8 +159,14 @@ const SignUpForm = (props) => {
           </Form>
         </Modal.Body>
         <Modal.Footer className={`mt-3 ${appStyles.Content}`}>
-          <Link className={styles.Link} to="/login">
-            Already have an account? <span>Sign in</span>
+          <Link
+            className={styles.Link}
+            to="/login"
+            onClick={() => {
+              handleClose();
+            }}
+          >
+            Already have an account? <span>Log in</span>
           </Link>
         </Modal.Footer>
       </Modal>
