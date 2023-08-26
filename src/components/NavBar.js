@@ -3,20 +3,73 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../contexts/CurrentUserContext";
+import Avatar from "./Avatar";
+import axios from "axios";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
+  const setCurrentUSer = useSetCurrentUser();
 
-  const loggedInIcons = <>{currentUser?.username}</>;
-  const loggedOutIcons = (
+  const handleLogOut = async () => {
+    try {
+      await axios.post("dj-rest-auth/logout/");
+      setCurrentUSer(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const addPinIcon = (
     <NavLink
       className={styles.NavLink}
       activeClassName={styles.Active}
-      to="/login"
+      to="/pins/create"
     >
-      <i className="fas fa-sign-in-alt"></i>Sign in
+      <i className="far fa-plus-square"></i>Add pin
     </NavLink>
+  );
+
+  const loggedInIcons = (
+    <>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/feed"
+      >
+        <i className="fas fa-stream"></i>Feed
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/loved"
+      >
+        <i className="fas fa-heart"></i>Loved
+      </NavLink>
+      <NavLink className={styles.NavLink} to="/" onClick={handleLogOut}>
+        <i className="fas fa-sign-out-alt"></i>Log out
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        to={`/profiles/${currentUser?.profile_id}`}
+      >
+        <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
+      </NavLink>
+    </>
+  );
+  const loggedOutIcons = (
+    <>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/login"
+      >
+        <i className="fas fa-sign-in-alt"></i>Sign in
+      </NavLink>
+    </>
   );
 
   return (
@@ -26,6 +79,7 @@ const NavBar = () => {
           <Navbar.Brand href="#home">
             <img src={logo} alt="logo" height={40} />
           </Navbar.Brand>
+          {currentUser && addPinIcon}
         </NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
