@@ -4,7 +4,6 @@ import Container from "react-bootstrap/Container";
 import { Route, Switch } from "react-router-dom";
 import "./api/axiosDefaults";
 import LogInForm from "./pages/auth/LogInForm";
-import SignUpForm from "./pages/auth/SignUpForm";
 
 function App() {
   return (
