@@ -27,16 +27,6 @@ const NavBar = () => {
     }
   };
 
-  const addPinIcon = (
-    <NavLink
-      className={styles.NavLink}
-      activeClassName={styles.Active}
-      to="/create-pin"
-    >
-      <i className="far fa-plus-square"></i>Create pin
-    </NavLink>
-  );
-
   const loggedInIcons = (
     <>
       <NavLink
@@ -84,34 +74,30 @@ const NavBar = () => {
       fixed="top"
     >
       <Container fluid>
-        <NavLink className={styles.NavLink} to="/">
-          <Navbar.Brand href="#home">
-            <div>
-              {currentUser ? (
-                <img
-                  src={smallerLogo} // Smaller logo for logged in users
-                  alt="small-logo"
-                  height={40}
-                />
-              ) : (
-                <img
-                  src={logo} // Larger logo for logged out users
-                  alt="logo"
-                  height={40}
-                />
-              )}
-            </div>
-          </Navbar.Brand>
-          {currentUser && (
-            <NavLink
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/create-pin"
-            >
+        <Navbar.Brand>
+          <div>
+            {currentUser ? (
+              <img
+                src={smallerLogo} // Smaller logo for logged in users
+                alt="small-logo"
+                height={40}
+              />
+            ) : (
+              <img
+                src={logo} // Larger logo for logged out users
+                alt="logo"
+                height={40}
+              />
+            )}
+          </div>
+        </Navbar.Brand>
+        {currentUser && (
+          <Nav className={`ml-auto ${styles.NavLink}`}>
+            <NavLink exact activeClassName={styles.Active} to="/create-pin">
               <i className="far fa-plus-square"></i>Create pin
             </NavLink>
-          )}
-        </NavLink>
+          </Nav>
+        )}
         <Navbar.Toggle
           ref={ref}
           onClick={() => setExpanded(!expanded)}
