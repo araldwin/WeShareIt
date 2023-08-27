@@ -92,7 +92,7 @@ const NavBar = () => {
           </div>
         </Navbar.Brand>
         {currentUser && (
-          <Nav className={`ml-auto ${styles.NavLink}`}>
+          <Nav className={`mx-auto ${styles.NavLink}`}>
             <NavLink exact activeClassName={styles.Active} to="/create-pin">
               <i className="far fa-plus-square"></i>Create pin
             </NavLink>
