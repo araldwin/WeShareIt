@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../assets/logo.png";
+import smallerLogo from "../assets/favicon.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
 import {
@@ -30,9 +31,9 @@ const NavBar = () => {
     <NavLink
       className={styles.NavLink}
       activeClassName={styles.Active}
-      to="/pins/create"
+      to="/create-pin"
     >
-      <i className="far fa-plus-square"></i>Add pin
+      <i className="far fa-plus-square"></i>Create pin
     </NavLink>
   );
 
@@ -82,12 +83,34 @@ const NavBar = () => {
       expand="md"
       fixed="top"
     >
-      <Container>
+      <Container fluid>
         <NavLink className={styles.NavLink} to="/">
           <Navbar.Brand href="#home">
-            <img src={logo} alt="logo" height={40} />
+            <div>
+              {currentUser ? (
+                <img
+                  src={smallerLogo} // Smaller logo for logged in users
+                  alt="small-logo"
+                  height={40}
+                />
+              ) : (
+                <img
+                  src={logo} // Larger logo for logged out users
+                  alt="logo"
+                  height={40}
+                />
+              )}
+            </div>
           </Navbar.Brand>
-          {currentUser && addPinIcon}
+          {currentUser && (
+            <NavLink
+              className={styles.NavLink}
+              activeClassName={styles.Active}
+              to="/create-pin"
+            >
+              <i className="far fa-plus-square"></i>Create pin
+            </NavLink>
+          )}
         </NavLink>
         <Navbar.Toggle
           ref={ref}

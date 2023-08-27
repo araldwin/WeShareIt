@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import { Route, Switch } from "react-router-dom";
 import "./api/axiosDefaults";
 import LogInForm from "./pages/auth/LogInForm";
+import CreatePin from "./pages/pins/CreatePin";
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
         <Switch>
           <Route exact path="/" render={() => <h1>Home page</h1>} />
           <Route exact path="/login" render={() => <LogInForm />} />
+          <Route exact path="/create-pin" render={() => <CreatePin />} />
+
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

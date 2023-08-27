@@ -1,0 +1,22 @@
+.Container {
+  min-height: 435px;
+  background-color: #eeecec;
+  border-radius: 10px;
+}
+
+.customContainer {
+  border: 4px dashed rgba(128, 128, 128, 0.5);
+  padding: 20px; /* Add padding if needed */
+}
+
+/* YourComponent.module.css */
+.customUnderlineBorder {
+  border: none !important;
+  border-bottom: 2px solid #ced4da !important;
+  outline: none !important;
+  transition: border-color 0.3s ease;
+}
+
+.customUnderlineBorder:focus {
+  border-color: #007bff !important;
+}
