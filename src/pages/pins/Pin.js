@@ -2,8 +2,9 @@ import React from "react";
 import styles from "../../styles/Pin.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
+import { axiosRes } from "../../api/axiosDefaults";
 
 const Pin = (props) => {
   const {
@@ -19,10 +20,44 @@ const Pin = (props) => {
     image,
     updated_at,
     pinPage,
+    setPin,
   } = props;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  const handleLove = async () => {
+    try {
+      const { data } = await axiosRes.post("/loves/", { pin: id });
+
+      setPin((prevPin) => ({
+        ...prevPin,
+        results: prevPin.results.map((pin) =>
+          pin.id === id
+            ? { ...pin, loves_count: pin.loves_count + 1, love_id: data.id }
+            : pin
+        ),
+      }));
+    } catch (err) {
+      console.log("Error:", err);
+    }
+  };
+
+  const handleUnlove = async () => {
+    try {
+      await axiosRes.delete(`/loves/${love_id}/`);
+      setPin((prevPin) => ({
+        ...prevPin,
+        results: prevPin.results.map((pin) =>
+          pin.id === id
+            ? { ...pin, loves_count: pin.loves_count - 1, love_id: null }
+            : pin
+        ),
+      }));
+    } catch (err) {
+      console.log("Error:", err);
+    }
+  };
 
   return (
     <Card className={styles.Pin}>
@@ -62,11 +97,11 @@ const Pin = (props) => {
               <i className="far fa-heart" />
             </OverlayTrigger>
           ) : love_id ? (
-            <span onClick={() => {}}>
+            <span onClick={handleUnlove}>
               <i className={`fas fa-heart ${styles.Heart}`} />
             </span>
           ) : currentUser ? (
-            <span onClick={() => {}}>
+            <span onClick={handleLove}>
               <i className={`far fa-heart ${styles.HeartOutline}`} />
             </span>
           ) : (
