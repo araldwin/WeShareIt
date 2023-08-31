@@ -9,6 +9,8 @@ import styles from "../../styles/PinnedPage.module.css";
 import Spinner from "../../components/Spinner";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Container, Form } from "react-bootstrap";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/data";
 
 function PinnedPage({ message, filter = "" }) {
   const [pin, setPin] = useState({ results: [] });
@@ -54,12 +56,19 @@ function PinnedPage({ message, filter = "" }) {
             />
           </div>
         </Form>
+
         {loading ? (
           <>
             {pin.results.length ? (
-              pin.results.map(pin => (
-                <Pin key={pin.id} {...pin} setPin={setPin} />
-              ))
+              <InfiniteScroll
+                children={pin.results.map((pin) => (
+                  <Pin key={pin.id} {...pin} setPin={setPin} />
+                ))}
+                dataLength={pin.results.length}
+                loader={<Spinner />}
+                hasMore={!!pin.next}
+                next={() => fetchMoreData(pin, setPin)}
+              />
             ) : (
               <Container className={appStyles.Content}>
                 <Spinner message={message} />
