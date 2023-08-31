@@ -32,11 +32,11 @@ const Pin = (props) => {
 
       setPin((prevPin) => ({
         ...prevPin,
-        results: prevPin.results.map((pin) =>
-          pin.id === id
+        results: prevPin.results.map((pin) => {
+          return pin.id === id
             ? { ...pin, loves_count: pin.loves_count + 1, love_id: data.id }
-            : pin
-        ),
+            : pin;
+        }),
       }));
     } catch (err) {
       console.log("Error:", err);
@@ -48,11 +48,11 @@ const Pin = (props) => {
       await axiosRes.delete(`/loves/${love_id}/`);
       setPin((prevPin) => ({
         ...prevPin,
-        results: prevPin.results.map((pin) =>
-          pin.id === id
+        results: prevPin.results.map((pin) => {
+          return pin.id === id
             ? { ...pin, loves_count: pin.loves_count - 1, love_id: null }
-            : pin
-        ),
+            : pin;
+        }),
       }));
     } catch (err) {
       console.log("Error:", err);

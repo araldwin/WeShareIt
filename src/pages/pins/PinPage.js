@@ -11,7 +11,7 @@ import Pin from "../pins/Pin";
 
 function PinPage() {
   const { id } = useParams();
-  const [pin, setPin] = useState({ results: [] }); // Use the correct state structure
+  const [pin, setPin] = useState({ results: [] });
 
   useEffect(() => {
     const handleMount = async () => {

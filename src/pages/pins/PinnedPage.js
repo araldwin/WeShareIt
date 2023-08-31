@@ -11,17 +11,17 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { Container, Form } from "react-bootstrap";
 
 function PinnedPage({ message, filter = "" }) {
-  const [pins, setPins] = useState({ results: [] });
+  const [pin, setPin] = useState({ results: [] });
   const [loading, setLoading] = useState(false);
   const { pathname } = useLocation();
 
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    const fetchPins = async () => {
+    const fetchPin = async () => {
       try {
         const { data } = await axiosReq.get(`/pins/?${filter}search=${query}`);
-        setPins(data);
+        setPin(data);
         setLoading(true);
       } catch (err) {
         console.log(err);
@@ -29,7 +29,7 @@ function PinnedPage({ message, filter = "" }) {
     };
     setLoading(false);
     const timer = setTimeout(() => {
-      fetchPins();
+      fetchPin();
     }, 1000);
     return () => {
       clearTimeout(timer);
@@ -56,9 +56,9 @@ function PinnedPage({ message, filter = "" }) {
         </Form>
         {loading ? (
           <>
-            {pins.results.length ? (
-              pins.results.map((pin) => (
-                <Pin key={pin.id} {...pin} setPins={setPins} />
+            {pin.results.length ? (
+              pin.results.map(pin => (
+                <Pin key={pin.id} {...pin} setPin={setPin} />
               ))
             ) : (
               <Container className={appStyles.Content}>
