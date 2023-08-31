@@ -1,0 +1,26 @@
+/* YourSearchBarStyles.module.css */
+
+.SearchBar {
+    margin-bottom: 16px;
+  }
+  
+  .InputWrapper {
+    position: relative;
+  }
+  
+  .SearchBar input {
+    border-radius: 20px;
+    color: #242a3d;
+    padding-left: 40px; /* Adjust this value to accommodate the icon */
+  }
+  
+  .SearchIcon {
+    position: absolute;
+    left: 10px; /* Adjust this value to align the icon */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #cfced3;
+    pointer-events: none;
+  }
+  

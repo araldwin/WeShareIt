@@ -4,20 +4,23 @@ import { useLocation, useParams } from "react-router-dom";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import appStyles from "../../App.module.css";
+import styles from "../../styles/PinnedPage.module.css";
 
 import Spinner from "../../components/Spinner";
 import { axiosReq } from "../../api/axiosDefaults";
-import { Container } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 
 function PinnedPage({ message, filter = "" }) {
   const [pins, setPins] = useState({ results: [] });
   const [loading, setLoading] = useState(false);
   const { pathname } = useLocation();
 
+  const [query, setQuery] = useState("");
+
   useEffect(() => {
     const fetchPins = async () => {
       try {
-        const { data } = await axiosReq.get(`/pins/?${filter}`);
+        const { data } = await axiosReq.get(`/pins/?${filter}search=${query}`);
         setPins(data);
         setLoading(true);
       } catch (err) {
@@ -25,13 +28,32 @@ function PinnedPage({ message, filter = "" }) {
       }
     };
     setLoading(false);
-    fetchPins();
-  }, [filter, pathname]);
+    const timer = setTimeout(() => {
+      fetchPins();
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [filter, query, pathname]);
 
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <>Popular profiles mobile</>
+        <Form
+          className={styles.SearchBar}
+          onSubmit={(event) => event.preventDefault()}
+        >
+          <div className={styles.InputWrapper}>
+            <i className={`fas fa-search ${styles.SearchIcon}`} />
+            <Form.Control
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              type="text"
+              placeholder="Search pin"
+            />
+          </div>
+        </Form>
         {loading ? (
           <>
             {pins.results.length ? (
