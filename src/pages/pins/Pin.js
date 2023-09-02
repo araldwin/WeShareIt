@@ -2,9 +2,10 @@ import React from "react";
 import styles from "../../styles/Pin.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
+import { MoreDropdown } from "../../components/MoreDropdown";
 
 const Pin = (props) => {
   const {
@@ -25,7 +26,20 @@ const Pin = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const history = useHistory();
 
+  const handleEdit = () => {
+    history.push(`/pins/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/pins/${id}/`);
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const handleLove = async () => {
     try {
       const { data } = await axiosRes.post("/loves/", { pin: id });
@@ -72,8 +86,15 @@ const Pin = (props) => {
               <span className="font-weight-bold">{owner}</span>
               <span className="small text-muted">{updated_at}</span>
             </div>
-            {is_owner && pinPage && "..."}
           </Link>
+          <div className="d-flex align-items-center">
+            {is_owner && pinPage && (
+              <MoreDropdown
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            )}
+          </div>
         </Media>
       </Card.Body>
 
