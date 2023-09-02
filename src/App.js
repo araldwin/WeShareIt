@@ -8,6 +8,7 @@ import CreatePin from "./pages/pins/CreatePin";
 import PinPage from "./pages/pins/PinPage";
 import PinnedPage from "./pages/pins/PinnedPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
+import EditPinForm from "./pages/pins/EditPinForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -48,6 +49,7 @@ function App() {
           <Route exact path="/login" render={() => <LogInForm />} />
           <Route exact path="/create-pin" render={() => <CreatePin />} />
           <Route exact path="/pins/:id" render={() => <PinPage />} />
+          <Route exact path="/pins/:id/edit" render={() => <EditPinForm />} />
 
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
