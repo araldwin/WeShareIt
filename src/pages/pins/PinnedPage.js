@@ -1,16 +1,16 @@
-import Pin from "./Pin";
 import React, { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PinnedPage.module.css";
-
-import Spinner from "../../components/Spinner";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Container, Form } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/data";
+import Pin from "./Pin";
+import Masonry from "react-masonry-css";
+import Spinner from "../../components/Spinner";
 
 function PinnedPage({ message, filter = "" }) {
   const [pin, setPin] = useState({ results: [] });
@@ -58,23 +58,19 @@ function PinnedPage({ message, filter = "" }) {
         </Form>
 
         {loading ? (
-          <>
-            {pin.results.length ? (
-              <InfiniteScroll
-                children={pin.results.map((pin) => (
-                  <Pin key={pin.id} {...pin} setPin={setPin} />
-                ))}
-                dataLength={pin.results.length}
-                loader={<Spinner />}
-                hasMore={!!pin.next}
-                next={() => fetchMoreData(pin, setPin)}
-              />
-            ) : (
-              <Container className={appStyles.Content}>
-                <Spinner message={message} />
-              </Container>
-            )}
-          </>
+          <Masonry
+            breakpointCols={{
+              default: 3,
+              1100: 2,
+              700: 1,
+            }}
+            className={styles.MasonryGrid}
+            columnClassName={styles.MasonryGridColumn}
+          >
+            {pin.results.map((pin) => (
+              <Pin key={pin.id} {...pin} setPin={setPin} />
+            ))}
+          </Masonry>
         ) : (
           <Container className={appStyles.Content}>
             <Spinner />

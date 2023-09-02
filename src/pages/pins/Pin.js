@@ -67,7 +67,7 @@ const Pin = (props) => {
             to={`/profiles/${profile_id}`}
             className="d-flex align-items-center"
           >
-            <Avatar src={profile_image} height={80} />
+            <Avatar src={profile_image} height={50} />
             <div className="d-flex flex-column ml-2">
               <span className="font-weight-bold">{owner}</span>
               <span className="small text-muted">{updated_at}</span>
@@ -122,7 +122,6 @@ const Pin = (props) => {
           <span className={`mr-1 ${styles.CommentCount}`}>
             {comments_count}
           </span>
-          <span className={styles.CommentText}>Comments</span>
         </div>
       </div>
     </Card>
