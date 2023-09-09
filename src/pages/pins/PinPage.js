@@ -8,9 +8,16 @@ import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import Pin from "../pins/Pin";
+import Comment from "../comments/Comment"
 
 import CommentCreateForm from "../comments/ CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
+
+import InfiniteScroll from "react-infinite-scroll-component";
+import Spinner from "../../components/Spinner";
+import { fetchMoreData } from "../../utils/data";
+
 
 function PinPage() {
   const { id } = useParams();
@@ -55,11 +62,21 @@ function PinPage() {
             "Comments"
           ) : null}
           {comments.results.length ? (
-            comments.results.map(comment => (
-              <p key={comment.id}>
-                {comment.owner}: {comment.content}
-              </p>
-            ))
+             <InfiniteScroll
+             children={comments.results.map((comment) => (
+               <Comment
+                 key={comment.id}
+                 {...comment}
+                 setPin={setPin}
+                 setComments={setComments}
+               />
+             ))}
+             dataLength={comments.results.length}
+             loader={ <Spinner />}
+             hasMore={!!comments.next}
+             next={() => fetchMoreData(comments, setComments)}
+           />
+
           ) : currentUser ? (
            <span>No comments yet, be the first to comment!</span> 
           ) : (

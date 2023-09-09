@@ -72,9 +72,9 @@ function PinnedPage({ message, filter = "" }) {
             ))}
           </Masonry>
         ) : (
-          <Container className={appStyles.Content}>
+      
             <Spinner />
-          </Container>
+          
         )}
       </Col>
     </Row>

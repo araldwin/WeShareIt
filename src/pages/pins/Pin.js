@@ -40,6 +40,7 @@ const Pin = (props) => {
       console.log(err);
     }
   };
+  
   const handleLove = async () => {
     try {
       const { data } = await axiosRes.post("/loves/", { pin: id });
