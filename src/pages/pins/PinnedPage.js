@@ -2,15 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import appStyles from "../../App.module.css";
+
 import styles from "../../styles/PinnedPage.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
-import { Container, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/data";
 import Pin from "./Pin";
 import Masonry from "react-masonry-css";
 import Spinner from "../../components/Spinner";
+import PopularProfiles from "../profiles/PopularProfiles";
+
 
 function PinnedPage({ message, filter = "" }) {
   const [pin, setPin] = useState({ results: [] });
@@ -72,10 +74,11 @@ function PinnedPage({ message, filter = "" }) {
             ))}
           </Masonry>
         ) : (
-      
-            <Spinner />
-          
+            <Spinner />       
         )}
+      </Col>
+      <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
+        <PopularProfiles />
       </Col>
     </Row>
   );
