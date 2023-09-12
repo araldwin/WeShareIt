@@ -1,0 +1,90 @@
+
+.ProfileRow {
+  background-color: #fff;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.ProfileImage {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+
+
+.ProfileInfo {
+  padding-left: 20px;
+}
+
+
+.ProfileName {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+
+.ProfileStats {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+
+.ProfileStatsLabel {
+  font-size: 14px;
+  color: #888;
+}
+
+
+.FollowButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.FollowButton:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+
+.ProfileContent {
+  font-size: 16px;
+  color: #333;
+  margin-top: 20px;
+}
+
+
+.ProfilePinsTitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+hr {
+  border: none;
+  border-top: 1px solid #e1e1e1;
+  margin: 20px 0;
+}
+
+
+@media screen and (max-width: 991px) {
+  .ProfileImage {
+    width: 250px;
+    height: 250px;
+  }
+}
