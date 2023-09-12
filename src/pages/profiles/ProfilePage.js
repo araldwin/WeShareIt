@@ -4,6 +4,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
+import Asset from "../../components/Asset";
+
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
@@ -18,26 +20,35 @@ import {
 } from "../../contexts/ProfileDataContext";
 import { Button, Image } from "react-bootstrap";
 import Spinner from "../../components/Spinner";
+import InfiniteScroll from "react-infinite-scroll-component";
+
+import Pin from "../pins/Pin";
+import { fetchMoreData } from "../../utils/data";
+
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [profilePins, setProfilePins] = useState({ results: [] });
   const currentUser = useCurrentUser();
   const { id } = useParams();
   const setProfileData = useSetProfileData();
   const { pageProfile } = useProfileData();
   const [profile] = pageProfile.results;
   const is_owner = currentUser?.username === profile?.owner;
+ 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: pageProfile }] = await Promise.all([
+        const [{ data: pageProfile}, { data: profilePins} ] = await Promise.all([
           axiosReq.get(`/profiles/${id}`),
+          axiosReq.get(`/pins/?owner__profile=${id}`),
         ]);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
         }));
+        setProfilePins(profilePins);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -90,8 +101,23 @@ function ProfilePage() {
   const mainProfilePins = (
     <>
       <hr />
-      <p className="text-center">Profile owner's pins</p>
+      <p className="text-center">{profile?.owner}'s pins</p>
       <hr />
+      {profilePins.results.length ? (
+				<InfiniteScroll
+					children={profilePins.results.map((pin) => (
+						<Pin key={pin.id} {...pin} setPins={setProfilePins} />
+					))}
+					dataLength={profilePins.results.length}
+					loader={<Spinner />}
+					hasMore={!!profilePins.next}
+					next={() => fetchMoreData(profilePins, setProfilePins)}
+				/>
+			) : (
+				<Asset
+					message={`No results found, ${profile?.owner} hasn't posted yet.`}
+				/>
+			)}
     </>
   );
 
