@@ -8,16 +8,16 @@ import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import Pin from "../pins/Pin";
-import Comment from "../comments/Comment"
+import Comment from "../comments/Comment";
 
 import CommentCreateForm from "../comments/ CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-
 
 import InfiniteScroll from "react-infinite-scroll-component";
 import Spinner from "../../components/Spinner";
 import { fetchMoreData } from "../../utils/data";
 
+import PopularProfiles from "../profiles/PopularProfiles";
 
 function PinPage() {
   const { id } = useParams();
@@ -30,12 +30,12 @@ function PinPage() {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: pin }, {data: comments}] = await Promise.all([
+        const [{ data: pin }, { data: comments }] = await Promise.all([
           axiosReq.get(`/pins/${id}`),
-          axiosReq.get(`/comments/?pin=${id}`)
+          axiosReq.get(`/comments/?pin=${id}`),
         ]);
         setPin({ results: [pin] });
-        setComments(comments)
+        setComments(comments);
       } catch (err) {
         console.log(err);
       }
@@ -47,7 +47,7 @@ function PinPage() {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>Popular profiles for mobile</p>
+        <PopularProfiles mobile />
         <Pin {...pin.results[0]} setPin={setPin} pinPage />
         <Container className={appStyles.Content}>
           {currentUser ? (
@@ -62,30 +62,29 @@ function PinPage() {
             "Comments"
           ) : null}
           {comments.results.length ? (
-             <InfiniteScroll
-             children={comments.results.map((comment) => (
-               <Comment
-                 key={comment.id}
-                 {...comment}
-                 setPin={setPin}
-                 setComments={setComments}
-               />
-             ))}
-             dataLength={comments.results.length}
-             loader={ <Spinner />}
-             hasMore={!!comments.next}
-             next={() => fetchMoreData(comments, setComments)}
-           />
-
+            <InfiniteScroll
+              children={comments.results.map((comment) => (
+                <Comment
+                  key={comment.id}
+                  {...comment}
+                  setPin={setPin}
+                  setComments={setComments}
+                />
+              ))}
+              dataLength={comments.results.length}
+              loader={<Spinner />}
+              hasMore={!!comments.next}
+              next={() => fetchMoreData(comments, setComments)}
+            />
           ) : currentUser ? (
-           <span>No comments yet, be the first to comment!</span> 
+            <span>No comments yet, be the first to comment!</span>
           ) : (
             <span>No comments... yet</span>
           )}
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        Popular profiles for desktop
+        <PopularProfiles />
       </Col>
     </Row>
   );
