@@ -26,7 +26,6 @@ function PinnedPage({ message, filter = "" }) {
         setPin(data);
         setLoading(true);
       } catch (err) {
-        console.log(err);
       }
     };
     setLoading(false);

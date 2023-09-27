@@ -37,7 +37,7 @@ function PinPage() {
         setPin({ results: [pin] });
         setComments(comments);
       } catch (err) {
-        console.log(err);
+
       }
     };
 

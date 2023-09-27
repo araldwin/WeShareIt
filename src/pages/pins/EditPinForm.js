@@ -8,7 +8,6 @@ import styles from "../../styles/PinCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
-
 import Alert from "react-bootstrap/Alert";
 import { Image } from "react-bootstrap";
 import { categories } from "../../utils/data";
@@ -41,9 +40,7 @@ function EditPinForm() {
         is_owner
           ? setPinData({ title, content, destination, category, image })
           : history.push("/");
-      } catch (err) {
-        console.log(err);
-      }
+      } catch (err) {}
     };
     handleMount();
   }, [history, id]);
@@ -81,7 +78,6 @@ function EditPinForm() {
       await axiosReq.put(`/pins/${id}/`, formData);
       history.push(`/pins/${id}`);
     } catch (err) {
-      console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

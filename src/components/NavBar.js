@@ -1,9 +1,14 @@
 import React from "react";
-import { Navbar, Container, Nav, OverlayTrigger, Tooltip } from "react-bootstrap";
+import {Navbar} from "react-bootstrap";
+import {Container} from "react-bootstrap";
+import {Nav} from "react-bootstrap";
+import {OverlayTrigger} from "react-bootstrap";
+import {Tooltip} from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+
 import logo from "../assets/logo.png";
 import smallerLogo from "../assets/favicon.png";
 import styles from "../styles/NavBar.module.css";
-import { NavLink } from "react-router-dom";
 import {
   useCurrentUser,
   useSetCurrentUser,
@@ -25,33 +30,36 @@ const NavBar = () => {
       setCurrentUSer(null);
       removeTokenTimestamp();
     } catch (err) {
-      console.log(err);
+  
     }
   };
 
   const loggedInIcons = (
     <>
-      <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/feed"
-      >
-        <i className="fas fa-stream"></i>Feed
-      </NavLink>
-      <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/loved"
-      >
-        <i className="fas fa-heart"></i>Loved
-      </NavLink>
-      <NavLink className={styles.NavLink} to="/" onClick={handleLogOut}>
-        <i className="fas fa-sign-out-alt"></i>Log out
-      </NavLink>
-      <OverlayTrigger
-        placement="bottom" // Adjust the placement as needed
-        overlay={<Tooltip>Profile</Tooltip>}
-      >
+      <OverlayTrigger placement="bottom" overlay={<Tooltip>Feed</Tooltip>}>
+        <NavLink
+          className={styles.NavLink}
+          activeClassName={styles.Active}
+          to="/feed"
+        >
+          <i className="fas fa-stream"></i>
+        </NavLink>
+      </OverlayTrigger>
+      <OverlayTrigger placement="bottom" overlay={<Tooltip>Love</Tooltip>}>
+        <NavLink
+          className={styles.NavLink}
+          activeClassName={styles.Active}
+          to="/loved"
+        >
+          <i className="fas fa-heart"></i>
+        </NavLink>
+      </OverlayTrigger>
+      <OverlayTrigger placement="bottom" overlay={<Tooltip>Log out</Tooltip>}>
+        <NavLink className={styles.NavLink} to="/" onClick={handleLogOut}>
+          <i className="fas fa-sign-out-alt"></i>
+        </NavLink>
+      </OverlayTrigger>
+      <OverlayTrigger placement="bottom" overlay={<Tooltip>Profile</Tooltip>}>
         <NavLink
           className={styles.NavLink}
           to={`/profiles/${currentUser?.profile_id}`}
@@ -64,13 +72,15 @@ const NavBar = () => {
   );
   const loggedOutIcons = (
     <>
-      <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/login"
-      >
-        <i className="fas fa-sign-in-alt"></i>Sign in
-      </NavLink>
+      <OverlayTrigger placement="bottom" overlay={<Tooltip>Log in</Tooltip>}>
+        <NavLink
+          className={styles.NavLink}
+          activeClassName={styles.Active}
+          to="/login"
+        >
+          <i className="fas fa-sign-in-alt"></i>
+        </NavLink>
+      </OverlayTrigger>
     </>
   );
 
@@ -115,21 +125,24 @@ const NavBar = () => {
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <NavLink
-              exact
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/"
+            <OverlayTrigger
+              placement="bottom"
+              overlay={<Tooltip>Home</Tooltip>}
             >
-              <i className="fas fa-home"></i>Home
-            </NavLink>
+              <NavLink
+                exact
+                className={styles.NavLink}
+                activeClassName={styles.Active}
+                to="/"
+              >
+                <i className="fas fa-home"></i>
+              </NavLink>
+            </OverlayTrigger>
 
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
         </Navbar.Collapse>
       </Container>
-
-      {/* Render the SignUpForm modal */}
     </Navbar>
   );
 };

@@ -51,7 +51,7 @@ function ProfilePage() {
         setProfilePins(profilePins);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+     
       }
     };
     fetchData();

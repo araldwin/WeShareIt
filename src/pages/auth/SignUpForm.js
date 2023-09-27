@@ -3,9 +3,14 @@ import { Link, useHistory } from "react-router-dom";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-import { BsEye, BsEyeSlash } from "react-icons/bs"; // Import eye icons
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 import logo from "../../assets/favicon.png";
-import { Modal, Form, Button, Alert } from "react-bootstrap";
+
+import {Modal} from "react-bootstrap";
+import {Form} from "react-bootstrap";
+import {Button} from "react-bootstrap";
+import {Alert} from "react-bootstrap";
+
 import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
 

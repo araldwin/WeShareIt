@@ -36,11 +36,9 @@ const Pin = (props) => {
     try {
       await axiosRes.delete(`/pins/${id}/`);
       history.goBack();
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
-  
+
   const handleLove = async () => {
     try {
       const { data } = await axiosRes.post("/loves/", { pin: id });
@@ -53,9 +51,7 @@ const Pin = (props) => {
             : pin;
         }),
       }));
-    } catch (err) {
-      console.log("Error:", err);
-    }
+    } catch (err) {}
   };
 
   const handleUnlove = async () => {
@@ -69,9 +65,7 @@ const Pin = (props) => {
             : pin;
         }),
       }));
-    } catch (err) {
-      console.log("Error:", err);
-    }
+    } catch (err) {}
   };
 
   return (
