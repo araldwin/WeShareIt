@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Navbar, Container, Nav, OverlayTrigger, Tooltip } from "react-bootstrap";
 import logo from "../assets/logo.png";
 import smallerLogo from "../assets/favicon.png";
 import styles from "../styles/NavBar.module.css";
@@ -48,12 +48,18 @@ const NavBar = () => {
       <NavLink className={styles.NavLink} to="/" onClick={handleLogOut}>
         <i className="fas fa-sign-out-alt"></i>Log out
       </NavLink>
-      <NavLink
-        className={styles.NavLink}
-        to={`/profiles/${currentUser?.profile_id}`}
+      <OverlayTrigger
+        placement="bottom" // Adjust the placement as needed
+        overlay={<Tooltip>Profile</Tooltip>}
       >
-        <Avatar src={currentUser?.profile_image} height={40} />
-      </NavLink>
+        <NavLink
+          className={styles.NavLink}
+          to={`/profiles/${currentUser?.profile_id}`}
+        >
+          <Avatar src={currentUser?.profile_image} height={40} />
+        </NavLink>
+      </OverlayTrigger>
+      ;
     </>
   );
   const loggedOutIcons = (
@@ -76,23 +82,25 @@ const NavBar = () => {
       fixed="top"
     >
       <Container fluid>
-        <Navbar.Brand>
-          <div>
-            {currentUser ? (
-              <img
-                src={smallerLogo} // Smaller logo for logged in users
-                alt="small-logo"
-                height={40}
-              />
-            ) : (
-              <img
-                src={logo} // Larger logo for logged out users
-                alt="logo"
-                height={40}
-              />
-            )}
-          </div>
-        </Navbar.Brand>
+        <NavLink to="/">
+          <Navbar.Brand>
+            <div>
+              {currentUser ? (
+                <img
+                  src={smallerLogo} // Smaller logo for logged in users
+                  alt="small-logo"
+                  height={40}
+                />
+              ) : (
+                <img
+                  src={logo} // Larger logo for logged out users
+                  alt="logo"
+                  height={40}
+                />
+              )}
+            </div>
+          </Navbar.Brand>
+        </NavLink>
         {currentUser && (
           <Nav className={`mx-auto ${styles.NavLink}`}>
             <NavLink exact activeClassName={styles.Active} to="/create-pin">
