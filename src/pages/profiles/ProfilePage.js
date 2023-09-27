@@ -24,6 +24,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 import Pin from "../pins/Pin";
 import { fetchMoreData } from "../../utils/data";
+import { ProfileEditDropdown } from "../../components/MoreDropdown";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -58,6 +59,7 @@ function ProfilePage() {
 
   const mainProfile = (
     <>
+    
       <Row noGutters className={`${styles.ProfileRow} text-center`}>
         <Col lg={3} className="text-lg-left">
           <Image
@@ -106,6 +108,7 @@ function ProfilePage() {
                 follow
               </Button>
             ))}
+            {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
         </Col>
         {profile?.content && <Col className="p-3">{profile.content}</Col>}
       </Row>
