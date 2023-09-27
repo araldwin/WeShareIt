@@ -7,8 +7,10 @@ import { BsEye, BsEyeSlash } from "react-icons/bs"; // Import eye icons
 import logo from "../../assets/favicon.png";
 import { Modal, Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUpForm = (props) => {
+  useRedirect("loggedIn");
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",

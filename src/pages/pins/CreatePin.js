@@ -16,8 +16,10 @@ import { categories } from "../../utils/data";
 
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function CreatePin() {
+  useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
 
   const [pinData, setPinData] = useState({
