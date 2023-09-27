@@ -10,7 +10,7 @@ import Pin from "./Pin";
 import Masonry from "react-masonry-css";
 import Spinner from "../../components/Spinner";
 import PopularProfiles from "../profiles/PopularProfiles";
-
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function PinnedPage({ message, filter = "" }) {
   const [pin, setPin] = useState({ results: [] });
@@ -19,14 +19,15 @@ function PinnedPage({ message, filter = "" }) {
 
   const [query, setQuery] = useState("");
 
+  const currentUser = useCurrentUser();
+
   useEffect(() => {
     const fetchPin = async () => {
       try {
         const { data } = await axiosReq.get(`/pins/?${filter}search=${query}`);
         setPin(data);
         setLoading(true);
-      } catch (err) {
-      }
+      } catch (err) {}
     };
     setLoading(false);
     const timer = setTimeout(() => {
@@ -35,12 +36,12 @@ function PinnedPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname]);
+  }, [filter, query, pathname, currentUser]);
 
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <PopularProfiles mobile/>
+        <PopularProfiles mobile />
         <Form
           className={styles.SearchBar}
           onSubmit={(event) => event.preventDefault()}
@@ -71,7 +72,7 @@ function PinnedPage({ message, filter = "" }) {
             ))}
           </Masonry>
         ) : (
-            <Spinner />       
+          <Spinner />
         )}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
