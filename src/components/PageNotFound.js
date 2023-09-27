@@ -1,5 +1,6 @@
 import React from "react";
-import styles from "../styles/";
+import styles from "../styles/NotFound.module.css";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function PageNotFound() {
   return (
@@ -8,7 +9,7 @@ function PageNotFound() {
       <p className={`${styles.message}`}>
         The page you are looking for might have been removed or doesn't exist.
       </p>
-      {/* You can add a button or a link to redirect to the home page or another relevant page */}
+      <Link to={"/"}>Click here to return to the Homepage</Link>
     </div>
   );
 }

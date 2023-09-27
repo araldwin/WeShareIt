@@ -6,8 +6,6 @@ import Row from "react-bootstrap/Row";
 import styles from "../../styles/PinnedPage.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Form } from "react-bootstrap";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { fetchMoreData } from "../../utils/data";
 import Pin from "./Pin";
 import Masonry from "react-masonry-css";
 import Spinner from "../../components/Spinner";
