@@ -7,6 +7,7 @@ The purpose of this Portfolio Project #5(Advanced Front-End Project), this is pa
 
 [View live website here](https://weshare-it-2feb6d10cc1b.herokuapp.com/login)
 
+## Table of content
 1. [Project](#project)
    - 1.1 [Objective](#objective)
    - 1.2 [Site Users Goal](#site-user-goal)
@@ -65,7 +66,7 @@ The site owner's goal for "WeShareIt" is to provide a vibrant and user-friendly 
 
 #### Database Schema
 
-All the models have been set up in a separate DRF repository. Click [here](https://github.com/araldwin/weshareit-api) to view the repository or [here](https://wsiapi2023-b84941ad1c92.herokuapp.com/) to view the deployed API.
+ All the models have been set up in a separate DRF repository. Click [here](https://github.com/araldwin/weshareit-api) to view the repository or [here](https://wsiapi2023-b84941ad1c92.herokuapp.com/) to view the deployed API.
 
 [Back to top](#table-of-content)
 
@@ -75,13 +76,13 @@ All the models have been set up in a separate DRF repository. Click [here](https
 ### Wireframes
 <hr>
 
- - I used balsamiq to create wireframes for my project.
-    - [View wireframes here]()
+ I used balsamiq to create wireframes for my project.
+- [View wireframes here]()
 
 ### User Stories
 <hr>
 
-### As a Site User, I Want To:
+### _As a Site User, I Want To:_
 
 1. **Sign Up and Log In**
    - Sign up for a new account.
@@ -119,12 +120,162 @@ All the models have been set up in a separate DRF repository. Click [here](https
 ### Site Structure
 <hr>
    
-The site structure for "WeShareIt," the social media platform, encompasses various key sections, including a dynamic home page for user engagement, user profiles for personalization, content feeds for sharing and discovery, post creation capabilities, and a custom 404 error page, all designed to create an intuitive and engaging user experience.
+The site structure for WeShare-It, the social media platform, encompasses various key sections, including a dynamic home page for user engagement, user profiles for personalization, content feeds for sharing and discovery, post creation capabilities, and a custom 404 error page, all designed to create an intuitive and engaging user experience.
 
 [Back to top](#table-of-content)
 
 ### Design
 <hr>
 
-- "WeShareIt" boasts an elegantly crafted and user-centric design, seamlessly blending visually appealing aesthetics with intuitive navigation, ensuring an engaging and delightful social media experience for all users.
+ WeShare-It boasts an elegantly crafted and user-centric design, seamlessly blending visually appealing aesthetics with intuitive navigation, ensuring an engaging and delightful social media experience for all users.
+
+- ### Typography
+   <hr>
+   <details><summary>typography screen shot</summary>
+      <p> <img src="images/typography.png"></p>
+      </details>
+      In this project, I use font-family Roboto and Open Sans.
+- ### Color scheme
+   <hr>
+   <details><summary>color palette preview</summary>
+      <p> <img src="images/We-ShareIt color scheme.png"></p>
+      </details>
+      These colors are integral to the overall design and appearance of the website.
+
+[Back to top](#table-of-content)
+## Features
+- ### A Simple, Easy to Remember URL:[WeShare-It](https://weshare-it-2feb6d10cc1b.herokuapp.com/)
+   <hr>
+
+- ### Navigation
+   <hr>
+   
+    The navigation bar adapts its functionalities based on the user's authentication status, providing different options for logged-out and logged-in users. It also ensures responsiveness for mobile and tablet devices.
+   #### _Logged-Out State_
+   - ##### Logo and Navigation:
+      - WeShare-it logo on the left
+      - Home icon
+      - Login/Authenticate page on the right
+         <details><summary>Logged-Out State Preview</summary>
+         <p><img src="images/loggedoutstate.png"></p>
+         </detail>
+      - Mobile Responsiveness View
+         - Hamburger icon to reveal dropdown menu for navigation options
+            <details><summary>Mobile Preview</summary>
+            <p><img src="images/mobileloggedoutview.png"></p>
+            </detail>
+   #### _Logged-In State_
+   - ##### Logo and Navigation:
+      - WeShare-it logo on the left
+      - Create Pin icon
+      - Functionalities: Home, Feed, Loved, Logout, Profile icons on the right
+         <details><summary>Logged-In State Preview</summary>
+         <p><img src="images/loggedinstate.png"></p>
+         </detail>
+      - Mobile Responsiveness View
+         - Hamburger icon to reveal dropdown menu for navigation options
+            <details><summary>Mobile Preview</summary>
+            <p><img src="images/mobileview.png"></p>
+            </detail>
+- ### Authentication
+   <hr>
+
+    Users can log-in, and log-out using the options provided in the navigation bar.
+   #### _Sign up process_
+   - New users who wish to create an account on WeShare-it can follow these steps:
+      1. Click on the **Sign-up** menu option in the Log-in Page.
+      2. Follow the user account sign-up process provided through dj-rest/auth/registration.
+      3. Enter necessary details to create a new user account.
+               <details><summary>Sign-up Preview</summary>
+               <p>_Desktop/Laptop Sign-up Preview_<br><img src="images/signupview.png"></p>
+               <p>_Mobile Sign-up Preview_<br><img src="images/mobilesignupview.png"></p>
+               <p>_Tablet Sign-up Preview_<br><img src="images/tabletsignupview.png"></p>
+               </detail>
+   #### _Log In process_
+   - Existing users with a WeShare-it user account can sign in by:
+      1. Clicking on the **Log-in icon** menu option in the Navigation Bar.
+      2. Providing their credentials (username and password) through the authentication process.
+               <details><summary>Log in Preview</summary>
+               <p>_Desktop/Laptop view_<br><img src="images/loginpreview.png"></p>
+               <p>_Mobile Sign-up Preview_<br><img src="images/mobileloginpreview.png"></p>
+               <p>_Tablet Sign-up Preview_<br><img src="images/tabletloginpreview.png"></p>
+               </detail>
+   #### _Log out process_
+   - Once logged in, users can log-out by:
+      1. Clicking on the **Log-out icon** visible in the Navigation Bar.        
+               <details><summary>Log-out icon Preview</summary>
+               <p>_NavBar view_<br><img src="images/logoutnavbarpreview.png"></p>
+               <p>_Log-out icon_<br><img src="images/logouticonpreview.png">
+               </p>
+               <summary>**Mobile Log-out Preview**</summary>
+               <p>- _Select burger icon to see the log-out icon._ <br><img src="images/mobilelogoutpreview.png"></p>
+               </detail>
+
+ - ### Home page
+   <hr>
+
+   The three main components of the WeShare-It home page, highlighting the functionality and layout of each section. 
+   
+   1. **Most Followed Profiles**
+
+      The Most Followed Profiles component showcases the top four users with the highest follower count. The layout and interaction differ based on device views (desktop/laptop vs. tablet/mobile).
+
+      - Displays avatars and usernames of the most followed profiles for logged-out users in desktop/laptop view.
+            <details><summary>Preview</summary>
+            <p>_Desktop/Laptop view_<br><img src="images/mostfollowedprofilesforguestusersdesktopview.png"></p>
+            </detail>
+
+      - Shows the top four most followed profiles for logged-out users in tablet/mobile view.
+            <details><summary>Preview</summary>
+            <p>_Mobile view_<br><img src="images/mostfollowedprofilesmobileloggedoutview.png"></p>
+            <p>_Tablet view_<br><img src="images/mostfollowedprofilestabletloggedoutview.png"></p>
+            </detail>
+
+      - Logged-in users (desktop/laptop view) can follow/unfollow profiles directly from this component.
+            <details><summary>Preview</summary>
+            <p>_Desktop/Laptop view_<br><img src="images/mostfollowedprofilesloggedindesktopview.png"></p>
+            </detail>
+      
+      - Clicking on an avatar redirects to the full profile page of the respective user.
+
+   2. **Created pins**
+
+      The Created pins component displays all pins created through the WeShare-It platform. Pins are ordered by the created date, with the most recent ones appearing first.
+      
+      - Masonry layout on desktop/laptop/tablet view for optimal pin display.
+            <details><summary>Preview</summary>
+            <p>_Desktop/Laptop view_<img src="images/masonrylayoutview.png"></p>
+            <p>_Tablet view_ <br><img src="images/tabletmasonrylayoutview.png"></p>
+            </detail>
+
+      - Infinite scroll method for mobile view to handle the pins' presentation.
+            <details><summary>Preview</summary>
+            <p><img src="images/infinitescrollview.png"></p>
+            </detail>
+
+      - Information displayed: user who posted the pin, date, title, description, pin image, love (like) counts, comment counts.
+
+      - User-specific interactions: Love/unlove functionality for logged-in users (excluding their own pins), comment functionality.
+
+   3. **Search and Filter**
+
+      The Search and Filter component allows users to search for specific pins by Title, user name, description, or categories.
+
+      - Enables users to search for pins based on various criteria.
+      - provides a filtering mechanism for a refined search experience.
+            <details><summary>Search and Filter Preview</summary>
+            <p><img src="images/searchandfilterpreview.png"></p>
+            </details>
+      
+- ### Feed
+  <hr>
+
+   The Pins Display in the Feed page showcases pins that are exclusively posted by the currently logged-in user. It filters and displays only the pins created by the user who is accessing the Feed page.
+
+   - Fetches pins from the API but filters to show only those posted by the logged-in user.
+   - if the logged in user has not posted any pins, a "No results found,[user] hasn't posted yet." message is displayed inside the Feed component.
+   - similar layout and functionality as the homepage's Pins component, displaying user-specific pins.
+           
+
+
 
