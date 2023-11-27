@@ -5,12 +5,14 @@ import Row from "react-bootstrap/Row";
 
 import styles from "../../styles/PinnedPage.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
-import { Form } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import Pin from "./Pin";
 import Masonry from "react-masonry-css";
 import Spinner from "../../components/Spinner";
 import PopularProfiles from "../profiles/PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import Asset from "../../components/Asset";
+import NoResults from "../../assets/no-results.png";
 
 function PinnedPage({ message, filter = "" }) {
   const [pin, setPin] = useState({ results: [] });
@@ -67,9 +69,15 @@ function PinnedPage({ message, filter = "" }) {
             className={styles.MasonryGrid}
             columnClassName={styles.MasonryGridColumn}
           >
-            {pin.results.map((pin) => (
-              <Pin key={pin.id} {...pin} setPin={setPin} />
-            ))}
+            {pin.results.length ? (
+              pin.results.map((pin) => (
+                <Pin key={pin.id} {...pin} setPin={setPin} />
+              ))
+            ) : (
+              <Container className="appStyles.Content">
+                <Asset src={NoResults} message={message} />
+              </Container>
+            )}
           </Masonry>
         ) : (
           <Spinner />

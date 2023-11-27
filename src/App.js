@@ -47,7 +47,7 @@ function App() {
             render={() => (
               <PinnedPage
                 message="No results found. Adjust the search keyboard or love a post."
-                filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
+                filter={`loves__owner__profile=${profile_id}&ordering=-loves__created_at&`}
               />
             )}
           />
