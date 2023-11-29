@@ -27,9 +27,10 @@ The purpose of this Portfolio Project #5(Advanced Front-End Project), this is pa
    - 3.4 [Feed](#feed)
    - 3.5 [Loved](#loved)
    - 3.6 [Profile page](#profile-page)
-   [Future features](#Future-features)
+   
+   [Future features](#future-features)
  4. [Technologies Used](#technologies-used)
-    - 4.1 [Languages](#langauges)
+    - 4.1 [Languages](#languages)
     - 4.2 [Frameworks, Toolkit & Software](#frameworks-toolkit-software)
     - 4.3 [Libraries](#libraries)
 5. [Testing](#testing)
@@ -42,7 +43,6 @@ The purpose of this Portfolio Project #5(Advanced Front-End Project), this is pa
 7. [Credits](#credits)
 
 ## Project
-<hr>
 
 ### Objective
 <hr>
@@ -270,12 +270,263 @@ The site structure for WeShare-It, the social media platform, encompasses variou
 - ### Feed
   <hr>
 
-   The Pins Display in the Feed page showcases pins that are exclusively posted by the currently logged-in user. It filters and displays only the pins created by the user who is accessing the Feed page.
+   The Pins Display in the Feed page showcases all pins posted by users that the currently logged-in user is following or has followed. It filters and displays only the pins created by users that the logged-in user is following.
 
-   - Fetches pins from the API but filters to show only those posted by the logged-in user.
-   - if the logged in user has not posted any pins, a "No results found,[user] hasn't posted yet." message is displayed inside the Feed component.
-   - similar layout and functionality as the homepage's Pins component, displaying user-specific pins.
+   - Fetches pins from the API but filters to show only those posted by users followed by the logged-in user.
+   - If the logged-in user is not following any users or is new, a "No results found" message is displayed inside the Feed component.
+   - Similar layout and functionality as the homepage's Pins component, displaying followed users' pins.
+   - Access to the Feed is restricted when the user is logged out.
+            <details><summary>Feed Page Pins Display</summary>
+            <p><img src="images/feedpagedisplay.png"></p>
+            </details>
+            
+- ### Love
+  <hr>
+
+   The Pins Display in the Love page showcases all the pins that the currently logged-in user has loved across the platform. It exclusively displays the pins that the logged-in user has interacted with positively.
+
+   - Fetches pins from the API that the logged-in user has loved.
+   - Only displays pins that have been loved by the logged-in user.
+   - Access to the Love page is restricted when the user is logged out.
+
            
+- ### Create pin
+  <hr>
+
+   The Create Pin page allows logged-in users to share new pins with the community. It comprises essential fields required for pin submission, including Upload Photo, Title, Pin Description, Destination Link, and Choose Pin Category.
+
+   - Mandatory Fields: Upload Photo and Title are mandatory fields for successful pin submission.
+   - Optional Fields: Pin Description, Destination Link, and Pin Category are optional but enhance the pin's details.
+   - Successful submission redirects the user to the newly created pin's details page.
+   - Each pin shared incrementally increases the user's pin count displayed on their profile page.
+            <details><summary>Create Pin page preview</summary>
+            <p><img src="images/createpinpreview.png"></p>
+            </details>
+- ### Pin Detail Page
+  <hr>
+
+   The Pin Detail page showcases comprehensive information regarding a single pin. Users can access this page by clicking on a pin image from the homepage or a user's profile page.
+
+   - Displays detailed information related to a single pin, including the uploaded photo, title, description, destination link, and pin category.
+   - Owner-specific actions: If the user is the owner of the pin, they can access edit and delete options represented by three dots in the top right corner of the page.
+   - Edit functionality allows the owner to update pin details, redirecting them to a pre-populated Create Pin form.
+            <details><summary>Edit Pin preview</summary>
+            <p><img src="images/pindetailspreview.png"></p>
+            </details>
+   
+   **Comments and Love/Like Section**
+      
+   **Comments**
+   
+   Below the pin details, users can view and post comments about the pin. If no comments exist, a message prompts users to be the first to comment. Logged-Out Users can read existing comments but cannot post comments without logging in. Owners of comments can edit and delete their own comments by selecting three dots to the right side of the comment section.
+
+   **Love**
+   
+   Allows users to love a pin. Increases the pin's love count. Logged_In Users can love a pin but cannot like their own pins. Each comment or love action increments the respective counts for the pin. Loved pins are reflected in the user's Love component/page in the navbar.
+            <details><summary>Pin Detail page preview</summary>
+            <p><img src="images/pinpagecommentlovepreview.png"></p>
+            </details>
+
+- ### Profile Page
+  <hr>
+
+  Profile avatars across the site (most followed profiles, posted pins, comments) serve as links to view the full profile page of that user. Additionally, users can access their own profile page through the Navigation Bar.
+
+  - Clicking on a profile avatar leads to the user's full profile page.
+  - Navigation Bar includes a direct link to the user's own profile page.
+            <details><summary>Profile page preview</summary>
+            <p><img src="images/profilepagepreview.png"></p>
+            </details>
+            
+
+   **Profile Stats**
+
+   - **User Information**
+      - Auto-Creation: Upon signup, a basic profile is auto-generated with a username, password, and default avatar image.
+      - Updated Information: Profile usage stats include the number of pins posted, profiles followed, and followers.
+      - About Container: Initially empty, users can edit their profile to add personal Bio.
+   
+   - **Editing Profile**
+      - Editing Bio: Users can click on the three dots dropdown in their own profile to access the Edit Profile option.
+      - Edit Profile Page: Redirects users to a form to add or change their avatar image and Bio.
+      - Visibility: Profile details filled in here become visible to other users in the main profile stats container.
+            <details><summary>Profile page edit preview</summary>
+            <p><img src="images/profilepageeditpreview.png"></p>
+            </details>
+
+   
+   - **Follow Functionality**
+      - Follow/Unfollow: Each profile has a follow button within the stats container for other users to follow/unfollow.
+      - Purpose: Not all profiles appear in the most followed component, enabling access to follow functionality.
+            <details><summary>Other User's Profile preview</summary>
+            <p><img src="images/profilepagefollowpreview.png"></p>
+            </details>
+
+   **Posted Pins Section**
+
+   **Display of Pins**
+   
+   Below the profile stats, all the pins posted by the viewed profile are displayed. Each pin is clickable to view its individual detail page, including comments (if any).
+
+   [Back to top](#table-of-content)
+- ### Future features
+  <hr>
+
+   #### **Enhanced User Experience**
+
+   #### Pinterest-Style Interface
+
+   - **Photo-Centric Homepage**: Display pins as images primarily in the homepage layout, mirroring the Pinterest style.
+
+   #### Navigation Enhancements
+
+   - **Dropdown Menu**: Create a dropdown menu within the navbar to encapsulate all site components for easier navigation and a cleaner UI.
+
+   #### Functional Improvements
+
+   - **Delete Confirmation Component**: Implement a confirmation component when deleting items to prevent accidental deletions.
+   - **Category Section in Homepage**: Introduce a category section in the homepage to facilitate organized pin browsing.
+
+   #### Profile Page Enhancements
+
+   - **Expanded Profile Editing**: Include additional details such as First Name, Last Name, Website, and Username in the profile editing section for a more comprehensive user profile.
+   - **Download and Save Pins**: Enable users to download and save their posted pins for personal use.
+   - **Private Messaging**: Incorporate a messaging system to facilitate communication between users.
+
+   ### Independent Development Support
+
+   - **Self-Reliance**: Enable users to address development hurdles by incorporating more detailed guidance within the app itself, reducing reliance on external support systems.
+   - **Documentation Enhancement**: Improve documentation within the app to provide comprehensive guidance on various functionalities and troubleshooting steps.
+
+   ### Personal Development Efforts
+
+   - **Self-Training**: Incorporate walkthroughs, tutorials, or guides within the app to assist in self-training and development efforts.
+   - **Resource Integration**: Integrate resources within the app interface to assist in resolving coding issues or seeking guidance, reducing reliance on external sources.
+   
+[Back to top](#table-of-content)
+
+## Technologies Used
+ ### Languages
+ - [React.js](https://react.dev/)
+ - [JavaScript](https://www.javascript.com/)
+ - [HTML5](https://html.spec.whatwg.org/)
+ - [CSS3](https://www.w3.org/TR/CSS/#css)
 
 
+### Frameworks Toolkit Software
+   - [Am I Responsive](https://ui.dev/amiresponsive) - online tool used to create mockup to present responsive design of this project.
+   - [Balsamiq](https://balsamiq.com) - design tool used for creating wireframes.
+   - [Canva](https://canva.com) - used to create the WeShare-It logo.
+   - [Chrome DevTools]() - used to inspect the rendered HTML (DOM) and network activity of my pages. Used to troubleshoot ad serving issues.
+   - [Cloudinary](https://cloudinary.com) - a service that hosts image files in the project.
+   - [Coolors.co](https://coolors.co) - used to create color palette.
+   - [CSS Valitadtion](https://jigsaw.w3.org/css-validator/) - used to validate CSS code.
+   - [Fontawesome](https://fontawesome.com/icons/) - where i import font icons for this project.
+   - [Favicon.io](https://favicon.io/favicon-generator/) - generator i use to create favicon for this project.
+   - [Google Fonts](https://fonts.google.com) - where i import and use font-style for this project.
+   - [Git](http://gitscm.com) - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
+   - [Gitpod](https://gitpod.io) - IDE used to code the project.
+   - [GitHub](https://github.com) - GitHub is used to store the project's code after being pushed from Git.
+   - [Heroku](https://heroku.com) - a container-based cloud Platform used to deploy, manage, and scale apps.
+   - [HTML Validation](https://validator.w3.org/) -used to validate HTML code.
+   - [JSHint Validation](https://jshint.com/)  - used to validate JavaScript code.
+   - [Lighthouse]() - used to test site performance
+   - [React Bootstrap](https://react-bootstrap.github.io/) - use to build front-end framework.
+   - [Visual Studio Code for Windows](https://code.visualstudio.com/) - IDE used to code the project.
+   - [Windows Snipping Tool]() - used to save the screen shot.
+
+   [Back to top](#table-of-content)
+
+### Libraries
+   - [react-router-dom@5.3.0](https://reactrouter.com/en/6.20.0/start/overview)
+
+   [Back to top](#table-of-content)
+
+## Testing
+
+   click [here](TESTING.md) for more information about testing WeShare-It Frontend.
+
+   [Back to top](#table-of-content)
+## Deployment
+### Deployment to Heroku
+
+### Prerequisites
+
+- Gitpod Workspace
+- Heroku Account
+- GitHub Repository
+
+### Steps
+
+1. **Create Heroku App**
+   - Log in to your Heroku account.
+   - Select "Create New App" and assign a unique project-related name.
+   - Choose a region and create the app.
+
+2. **Connect GitHub Repository**
+   - In the Heroku dashboard, navigate to the 'Deploy' tab.
+   - Choose GitHub as the deployment method.
+   - Find your project repository and connect it.
+
+3. **Deploy Application**
+   - Select the branch to deploy.
+   - Click 'Deploy branch' to initiate the build process.
+   - Once build succeeds, click 'Open App' to view your application.
+
+## Connecting React Frontend to API Backend
+
+### Prerequisites
+
+- Deployed API Backend
+- Axios Library (for making HTTP requests)
+
+### Steps
+
+1. **Heroku API Application Settings**
+   - Access the Heroku dashboard and locate your API application settings.
+   - Add new Config Vars:
+     - `CLIENT_ORIGIN`: Set to the deployed React application URL (e.g., https://your-deployed-react-app.herokuapp.com).
+     - `CLIENT_ORIGIN_DEV`: Set to the Gitpod preview link URL (without trailing slash).
+
+2. **Frontend Setup**
+
+   - In the Gitpod workspace, install the Axios library:
+     ```
+     npm install axios
+     ```
+
+   - Create an 'API' folder and inside it, create a file named 'axiosDefaults'.
+     - Import Axios at the top of the file.
+     - Define the baseURL as the unique URL of your deployed API project.
+     - Set the content-type header to 'multi-part/form-data'.
+     - Set 'withCredentials' to `true` to avoid CORS issues.
+
+3. **Usage in App.js**
+   - Import the created 'axiosDefaults' file into App.js to utilize it across all pages.
+
+### Additional Notes
+
+- Regularly check and update the deployed URLs as they might change.
+- Ensure configurations and settings align between the frontend and backend for seamless communication.
+
+[Back to top](#table-of-content)
+
+## Credits
+
+   - [Moments](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+RA101+2021_T3/courseware/70a8c55db0504bbdb5bcc3bfcf580080/953cd4e5015f483bb05263db3e740e19/) - Code Institute walkthrough
+   - [Stack Overflow](https://stackoverflow.com/) - used to solve bugs, and learn to understand more about what the code does and how it works properly.
+   - [JavaScript Mastery](https://www.youtube.com/watch?v=1RHDhtbqo94&list=PL6QREj8te1P6wX9m5KnicnDVEucbOPsqR&index=17) - Youtube tutorials i used to get ideas for my WeShare-It project.
+
+## Acknowledgements
+
+   - Mr. Rohit to my mentor
+   - Student Support team
+   - Slack community
+   - Code institute
+
+## Disclaimer
+   - WeShare-It was created for educational purpose only.
+   
+[Back to top](#table-of-content)
+   
 
